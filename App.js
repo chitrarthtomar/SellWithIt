@@ -1,10 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  let x = 1;
+  console.log("app executed!")
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Stay Home, Stay Safe!!</Text>
+      <Text>Social Distancing is the way to go!</Text>
+      <Button title="Won't do anything :)" />
     </View>
   );
 }
