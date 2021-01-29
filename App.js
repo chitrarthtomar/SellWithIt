@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import Home from './app/screens/home/home';
-import Login from './app/screens/login/Login';
+import Home from './app/screens/home/Home';
+// import Login from './app/screens/login/Login';
 
 export default function App() {
   let x = 1;
