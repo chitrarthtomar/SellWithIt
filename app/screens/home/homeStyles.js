@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export const homeStyles = StyleSheet.create({
     container: {
+        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#EEF0F3",
         paddingTop: 10,
-        marginBottom: 40,
     },
     listItem: {
         flex: 1,
@@ -20,7 +20,7 @@ export const homeStyles = StyleSheet.create({
         marginHorizontal: 10
     },
     listView: {
-        paddingBottom: 10,
+        // paddingBottom: 10,
     },
     topInfo: {
         flexDirection: "row",
@@ -40,8 +40,9 @@ export const homeStyles = StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         paddingHorizontal: 10,
-        // borderRightWidth: 1,
-        // borderLeftWidth: 1,
+    },
+    leftBorder: {
+        borderLeftWidth: 1,
         borderColor: "#D8DDE1",
     },
     logo: {
@@ -57,6 +58,8 @@ export const homeStyles = StyleSheet.create({
         fontFamily: "monospace",
         fontWeight: "500",
         color: "#585D61",
+        flex: 1,
+        flexWrap: 'wrap'
     },
     searchBar: {
         fontSize: 24,
@@ -73,5 +76,29 @@ export const homeStyles = StyleSheet.create({
     scrollView: {
         height: "90%",
         width: "90%",
+    },
+    itemType: {
+        borderWidth: 1,
+        margin: 10,
+        padding: 5,
+        borderRadius: 15,
+        fontSize: 10,
+    },
+    addButton: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.2)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 60,
+        position: 'absolute',
+        bottom: 12,
+        right: 12,
+        height: 60,
+        backgroundColor: 'red',
+        borderRadius: 70,
+    },
+    plusSign: {
+        fontSize: 42,
+        color: "white",
     },
 });

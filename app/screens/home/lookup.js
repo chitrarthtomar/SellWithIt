@@ -65,8 +65,16 @@ export const lookup = [
   },
   {
     id: 26,
-    name: "asian polymmmer red 100ml",
+    name: "asian polymmmer red 100ml just testing the UI",
     type: "paint",
+    costPrice: "12.34",
+    cartage: "22",
+    sellingPrice: "15",
+  },
+  {
+    id: 27,
+    name: "asian polymmmer red 100ml just testing the UI",
+    type: "hardware",
     costPrice: "12.34",
     cartage: "22",
     sellingPrice: "15",
