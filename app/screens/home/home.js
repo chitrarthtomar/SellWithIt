@@ -33,7 +33,7 @@ const Home = () => {
                     selectedValue={searchItemType}
                     style={homeStyles.itemTypePicker}
                     onValueChange={(itemValue) =>
-                        this.setItemType(itemValue)
+                        setItemType(itemValue)
                     }>
                     <Picker.Item label="Show Everything" value="" />
                     <Picker.Item label="Paint" value="paint" />
