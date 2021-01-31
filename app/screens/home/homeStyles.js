@@ -2,31 +2,35 @@ import { StyleSheet } from 'react-native';
 
 export const homeStyles = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#EEF0F3",
+        paddingTop: 10,
+        marginBottom: 40,
     },
     listItem: {
         flex: 1,
         flexDirection: "column",
-        padding: "10px",
-        borderColor: "D8DDE1",
-        borderWidth: "1px",
-        marginVertical: "2px",
+        padding: 10,
+        borderColor: "#D8DDE1",
+        borderWidth: 1,
+        marginVertical: 2,
         backgroundColor: "white",
+        borderRadius: 10,
+        marginHorizontal: 10
     },
     listView: {
+        paddingBottom: 10,
     },
     topInfo: {
         flexDirection: "row",
         alignItems: "center",
-        borderBottomWidth: "1px",
-        paddingBottom: "5px",
-        borderColor: "D8DDE1",
+        borderBottomWidth: 1,
+        paddingBottom: 5,
+        borderColor: "#D8DDE1",
     },
     bottomInfo: {
-        marginTop: "5px",
+        marginTop: 5,
         flexDirection: "row",
         alignItems: "center",
         display: "flex",
@@ -35,21 +39,21 @@ export const homeStyles = StyleSheet.create({
     priceInfo: {
         flexDirection: "column",
         alignItems: "center",
-        paddingHorizontal: "10px",
-        // borderRightWidth: "1px",
-        // borderLeftWidth: "1px",
-        borderColor: "D8DDE1",
+        paddingHorizontal: 10,
+        // borderRightWidth: 1,
+        // borderLeftWidth: 1,
+        borderColor: "#D8DDE1",
     },
     logo: {
         height: 30,
         width: 30,
         borderRadius: 80,
         resizeMode: "contain",
-        marginRight: "10px",
-        marginLeft: "5px"
+        marginRight: 10,
+        marginLeft: 5
     },
     itemName: {
-        fontSize: "20px",
+        fontSize: 20,
         fontFamily: "monospace",
         fontWeight: "500",
         color: "#585D61",
@@ -59,15 +63,15 @@ export const homeStyles = StyleSheet.create({
         margin: 10,
         width: '80%',
         height: 50,
-        borderRadius: "50px",
+        borderRadius: 50,
         backgroundColor: 'white',
-        paddingLeft: "10px",
-      },
-      infoText: {
+        paddingLeft: 10,
+    },
+    infoText: {
         color: "#585D61",
-      },
-      scrollView: {
-          height: "90%",
-          width: "90%",
-      },
+    },
+    scrollView: {
+        height: "90%",
+        width: "90%",
+    },
 });
