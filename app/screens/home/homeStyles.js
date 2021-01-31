@@ -61,14 +61,22 @@ export const homeStyles = StyleSheet.create({
         flex: 1,
         flexWrap: 'wrap'
     },
+    searchArea : {
+        flexDirection: "row",
+    },
     searchBar: {
         fontSize: 24,
         margin: 10,
-        width: '80%',
+        width: '70%',
         height: 50,
         borderRadius: 50,
         backgroundColor: 'white',
         paddingLeft: 10,
+    },
+    itemTypePicker: { 
+        height: 50, 
+        width: 20,
+        marginLeft: 5,
     },
     infoText: {
         color: "#585D61",
