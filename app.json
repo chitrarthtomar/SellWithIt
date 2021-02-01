@@ -7,9 +7,9 @@
     "orientation": "portrait",
     "icon": "./app/assets/saleCart.png",
     "splash": {
-      "image": "./app/assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "image": "./app/assets/store.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#5CA363"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

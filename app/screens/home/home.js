@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { View, Text, Image, FlatList, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, FlatList, TextInput, TouchableOpacity, Picker } from 'react-native'
 import { homeStyles } from './homeStyles';
 import { lookup } from './lookup';
-import {Picker} from '@react-native-picker/picker';
+
 
 const colDisplay = (labelText, value, style) => {
     return (
@@ -15,8 +15,8 @@ const colDisplay = (labelText, value, style) => {
 
 const addNewElement = () => { }
 
-const filterList = (data, search) => {
-    return data.filter(m => m.name.toLowerCase().indexOf(search) >= 0);
+const filterList = (data, search, type) => {
+    return data.filter(m => (m.type.indexOf(type) >= 0) && (m.name.toLowerCase().indexOf(search) >= 0));
 }
 
 const Home = () => {
@@ -31,11 +31,13 @@ const Home = () => {
                 </TextInput>
                 <Picker
                     selectedValue={searchItemType}
+                    mode="dropdown"
+                    prompt="Type"
                     style={homeStyles.itemTypePicker}
-                    onValueChange={(itemValue) =>
-                        setItemType(itemValue)
+                    onValueChange={(itemValue, itemIndex) =>
+                        setItemType(itemValue.toLowerCase())
                     }>
-                    <Picker.Item label="Show Everything" value="" />
+                    <Picker.Item label="All" value="" />
                     <Picker.Item label="Paint" value="paint" />
                     <Picker.Item label="Hardware" value="hardware" />
                     <Picker.Item label="Sanitory" value="sanitory" />
@@ -43,7 +45,7 @@ const Home = () => {
             </View>
             <FlatList style={homeStyles.listView}
                 keyExtractor={item => item.id.toString()}
-                data={filterList(lookup, searchText)} renderItem={({ item }) =>
+                data={filterList(lookup, searchText, searchItemType)} renderItem={({ item }) =>
                     <TouchableOpacity key={item.id} style={homeStyles.listItem}>
                         <View style={homeStyles.topInfo}>
                             <Image source={require("../../assets/saleCart.jpg")} style={homeStyles.logo} />
