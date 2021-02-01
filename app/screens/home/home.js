@@ -15,6 +15,19 @@ const colDisplay = (labelText, value, style) => {
 
 const addNewElement = () => { }
 
+const getTypeColor = (type) => {
+    switch (type) {
+        case "paint":
+            return "#F36E4C";
+        case "hardware":
+            return "#C8B384";
+        case "sanitory":
+            return "#193C63";
+        default:
+            return "white";
+    }
+}
+
 const filterList = (data, search, type) => {
     return data.filter(m => (m.type.indexOf(type) >= 0) && (m.name.toLowerCase().indexOf(search) >= 0));
 }
@@ -50,13 +63,13 @@ const Home = () => {
                         <View style={homeStyles.topInfo}>
                             <Image source={require("../../assets/saleCart.jpg")} style={homeStyles.logo} />
                             <Text style={homeStyles.itemName}>{item.name}</Text>
-                            <Text style={homeStyles.itemType}>{item.type.toUpperCase()}</Text>
+                            <Text style={[{ ...homeStyles.itemType }, { backgroundColor: getTypeColor(item.type.toLowerCase()) }]}>{item.type.toUpperCase()}</Text>
                         </View>
                         <View style={homeStyles.bottomInfo}>
-                            {colDisplay("CostPrice", item.costPrice)}
+                            {colDisplay("Cost Price", item.costPrice)}
                             {colDisplay("Cartage", item.cartage, homeStyles.leftBorder)}
-                            {colDisplay("TotalCostPrice", +item.costPrice + +item.cartage, homeStyles.leftBorder)}
-                            {colDisplay("SellingPrice", item.sellingPrice, homeStyles.leftBorder)}
+                            {colDisplay("Total Cost Price", +item.costPrice + +item.cartage, homeStyles.leftBorder)}
+                            {colDisplay("Selling Price", item.sellingPrice, homeStyles.leftBorder)}
                         </View>
                     </TouchableOpacity >
                 } />

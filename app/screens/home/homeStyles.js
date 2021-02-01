@@ -80,7 +80,6 @@ export const homeStyles = StyleSheet.create({
     itemTypePicker: { 
         height: 50, 
         width: "40%",
-        //marginLeft: 5,
         // borderRadius: 1,
         borderWidth: 1,
         borderColor: "red",
@@ -99,6 +98,10 @@ export const homeStyles = StyleSheet.create({
         padding: 5,
         borderRadius: 15,
         fontSize: 10,
+        textAlign: "center",
+        width: 70,
+        fontWeight: "700",
+        color: "white",
     },
     addButton: {
         borderWidth: 1,
