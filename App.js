@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Platform, View } from 'react-native';
+import Edit from './app/screens/edit/edit';
 import Home from './app/screens/home/Home';
 // import Login from './app/screens/login/Login';
 
@@ -8,7 +9,8 @@ export default function App() {
   console.log("app executed!")
   return (
     <View style={styles.AndroidSafeArea}>
-      <Home></Home>
+      {/* <Home></Home> */}
+      <Edit></Edit>
     </View>
   );
 }

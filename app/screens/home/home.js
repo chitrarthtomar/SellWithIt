@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, Image, FlatList, TextInput, TouchableOpacity, Picker } from 'react-native'
 import { homeStyles } from './homeStyles';
 import { lookup } from './lookup';
-
+import { categories, getCategoryTypeColor } from "../../static-data/category";
 
 const colDisplay = (labelText, value, style) => {
     return (
@@ -15,19 +15,23 @@ const colDisplay = (labelText, value, style) => {
 
 const addNewElement = () => { }
 
-const getTypeColor = (type) => {
-    switch (type) {
-        case "paint":
-            return "#F36E4C";
-        case "hardware":
-            return "#C8B384";
-        case "sanitory":
-            return "#193C63";
-        default:
-            return "white";
+const updateElement = (element) => { }
+
+const updateList = (item) => {
+    if(item.id) {
+        lookup.forEach(m => {
+            if(m.id === item.id)
+                m = item;
+        })
+    } else {
+        var id = 1;
+        lookup.forEach(m => {
+            if(m.id && (m.id >= id))
+                id = m.id + 1;
+        });
+        lookup.push({"id": id, ...item});
     }
 }
-
 const filterList = (data, search, type) => {
     return data.filter(m => (m.type.indexOf(type) >= 0) && (m.name.toLowerCase().indexOf(search) >= 0));
 }
@@ -51,19 +55,17 @@ const Home = () => {
                         setItemType(itemValue.toLowerCase())
                     }>
                     <Picker.Item label="All" value="" />
-                    <Picker.Item label="Paint" value="paint" />
-                    <Picker.Item label="Hardware" value="hardware" />
-                    <Picker.Item label="Sanitory" value="sanitory" />
+                    {categories.map(m => {return <Picker.Item key={m.value} label={m.label} value={m.value} />;})}
                 </Picker>
             </View>
             <FlatList style={homeStyles.listView}
                 keyExtractor={item => item.id.toString()}
                 data={filterList(lookup, searchText, searchItemType)} renderItem={({ item }) =>
-                    <TouchableOpacity key={item.id} style={homeStyles.listItem}>
+                    <TouchableOpacity key={item.id} style={homeStyles.listItem}> onPress={updateElement(item)}
                         <View style={homeStyles.topInfo}>
                             <Image source={require("../../assets/saleCart.jpg")} style={homeStyles.logo} />
                             <Text style={homeStyles.itemName}>{item.name}</Text>
-                            <Text style={[{ ...homeStyles.itemType }, { backgroundColor: getTypeColor(item.type.toLowerCase()) }]}>{item.type.toUpperCase()}</Text>
+                            <Text style={[{ ...homeStyles.itemType }, { backgroundColor: getCategoryTypeColor(item.type.toLowerCase()) }]}>{item.type.toUpperCase()}</Text>
                         </View>
                         <View style={homeStyles.bottomInfo}>
                             {colDisplay("Cost Price", item.costPrice)}
