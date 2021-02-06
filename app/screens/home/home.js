@@ -55,7 +55,7 @@ const Home = () => {
                         setItemType(itemValue.toLowerCase())
                     }>
                     <Picker.Item label="All" value="" />
-                    {categories.map(m => {return <Picker.Item key={m.value} label={m.label} value={m.value} />;})}
+                    {categories.map(m => (<Picker.Item key={m.value} label={m.label} value={m.value} />))}
                 </Picker>
             </View>
             <FlatList style={homeStyles.listView}

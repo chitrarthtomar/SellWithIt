@@ -4,62 +4,73 @@ import { editStyles } from './editStyle';
 import { categories, getCategoryTypeColor } from "../../static-data/category";
 
 
-const InputWithTitle = (labelText, initial, funToUpdate) => {
+const InputWithTitle = (props) => {
+    const {labelText, intialKey, initialValue, funToUpdate} = props;
     return (
-        <View>
-            <Text style={editStyles.inputTitle}>{labelText}</Text>
+        <View style={editStyles.inputDetail}>
+            <Text style={editStyles.inputTitle} >{labelText}</Text>
             <TextInput placeholder="Enter value... "
-                    value = {initial.value}
+                    defaultValue= {initialValue}
                     onChangeText={(value) => {
-                        var a = {};
-                        a[initial.key] = value;
-                        funToUpdate({...a});
+                        var temp = {};
+                        temp[intialKey] = value;
+                        funToUpdate(pre => {return { ...pre, ...temp}});
                     }}
                     style={editStyles.inputValue}></TextInput>
         </View>
     );
 };
 
-const DropDownInputWithTitle = (labelText, initial, possibleValues, funToUpdate) => {
+const DropDownInputWithTitle = (props) => {
+    const {labelText, intialKey, initialValue, possibleValues, funToUpdate} = props
     return (
-        <View>
+        <View style={editStyles.inputDetail}>
             <Text style={editStyles.inputTitle}>{labelText}</Text>
             <Picker
-                    selectedValue={initial.value}
+                    selectedValue={initialValue}
                     mode="dropdown"
                     prompt="Type"
                     style={editStyles.itemTypePicker}
                     onValueChange={(itemValue, itemIndex) => {
-                        var a = {};
-                        a[initial.key] = itemValue.toLowerCase();
-                        funToUpdate({...a});
+                        var temp = {};
+                        temp[intialKey] = itemValue;
+                        funToUpdate(pre => {return { ...pre, ...temp}});
                     }
                 }>
-                    {possibleValues.map(m => {return <Picker.Item key={m.value} label={m.label} value={m.value} />;})}
+                    {possibleValues.map(m => (<Picker.Item key={m.value} label={m.label} value={m.value} />))}
                 </Picker>
         </View>
     );
 };
 
 const updateAndGoHome = (item, updateToMainList) => {
-    if(item){
+    if(item&&updateToMainList){
         updateToMainList(item);
     }
     //goHome();
+    console.log(item, "from here");
 };
 
 const Edit = ({item, updateToMainList}) => {
-    const [newItem, setNewItem] = useState({...item});
+    const [newItem, setNewItem] = useState({
+        name: "commode seat ",
+        type: "paint",
+        costPrice: "14.34",
+        cartage: "4",
+        sellingPrice: "40",
+    });
+
     return (
         <View style={editStyles.container}>
-            <InputWithTitle labelText="Name" initial={{...newItem.name}} funToUpdate={setNewItem} />
-            <DropDownInputWithTitle labelText="Type" initial={{...newItem.type}} possibleValues = {categories} funToUpdate={setNewItem} />
-            <InputWithTitle labelText="Cost Price" initial={{...newItem.costPrice}} funToUpdate={setNewItem} />
-            <InputWithTitle labelText="Cartage" initial={{...newItem.cartage}} funToUpdate={setNewItem} />
-            <InputWithTitle labelText="Selling Price" initial={{...newItem.sellingPrice}} funToUpdate={setNewItem} />
-            <View>
-                <TouchableOpacity onPress={updateAndGoHome()}>Cancel</TouchableOpacity>
-                <TouchableOpacity onPress={updateAndGoHome(newItem, updateToMainList)}>{<Text>newItem.id?"Update":"Add"</Text>}</TouchableOpacity>
+            <Text style={editStyles.titleLabel}>{(newItem.id?"Update":"Add")+ " details for the product"}</Text>
+            <InputWithTitle labelText="Name" intialKey="name" initialValue={newItem.name} funToUpdate={setNewItem} />
+            <DropDownInputWithTitle labelText="Type" intialKey="type" initialValue={newItem.type} possibleValues = {categories} funToUpdate={setNewItem} />
+            <InputWithTitle labelText="Cost Price" intialKey="costPrice" initialValue={newItem.costPrice} funToUpdate={setNewItem} />
+            <InputWithTitle labelText="Cartage" intialKey="cartage" initialValue={newItem.cartage} funToUpdate={setNewItem} />
+            <InputWithTitle labelText="Selling Price" intialKey="sellingPrice" initialValue={newItem.sellingPrice} funToUpdate={setNewItem} />
+            <View style={editStyles.buttonArea}>
+                <TouchableOpacity style={editStyles.addButton} onPress={() => updateAndGoHome(newItem, updateToMainList)}>{<Text style={editStyles.buttonText}>{newItem.id?"Update":"Add"}</Text>}</TouchableOpacity>
+                <TouchableOpacity style={editStyles.cancelButton} onPress={() => updateAndGoHome()}><Text style={editStyles.buttonText}>Cancel</Text></TouchableOpacity>
             </View>
         </View>
     );
